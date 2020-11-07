@@ -9,7 +9,7 @@ By completing all the lessons, you got a solid understanding of keypoint detecto
 ```Implement the method "matchBoundingBoxes", which takes as input both the previous and the current data frames and provides as output the ids of the matched regions of interest (i.e. the boxID property). Matches must be the ones with the highest number of keypoint correspondences.```
 
 ### 2. Compute Lidar-based TTC
-``` Compute the time-to-collision in second for all matched 3D objects using only Lidar measurements from the matched bounding boxes between current and previous frame```
+```Compute the time-to-collision in second for all matched 3D objects using only Lidar measurements from the matched bounding boxes between current and previous frame```
 
 ### 3. Associate Keypoint Correspondences with Bounding Boxes
 ```Prepare the TTC computation based on camera measurements by associating keypoint correspondences to the bounding boxes which enclose them. All matches which satisfy this condition must be added to a vector in the respective bounding box.```
