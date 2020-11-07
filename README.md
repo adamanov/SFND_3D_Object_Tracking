@@ -2,7 +2,7 @@
 ## [Rubric](https://review.udacity.com/#!/rubrics/2550/view)
 By completing all the lessons, you got a solid understanding of keypoint detectors, descriptors, and methods to match them between successive images. Also, I leant how to detect objects in an image using the YOLO deep-learning framework. And finally, I leant how to associate regions in a camera image with Lidar points in 3D space.
 
-```2D_Feature Tracking: [Mid-Term_Project](https://github.com/adamanov/SFND_2D_Feature_Tracking)```
+```2D_Feature Tracking:``` [Mid-Term_Project](https://github.com/adamanov/SFND_2D_Feature_Tracking)
 
 <img src="images/course_code_structure.png" width="779" height="414" />
 
