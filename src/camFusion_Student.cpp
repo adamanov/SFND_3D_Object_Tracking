@@ -196,7 +196,7 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
 {
     // Compute distance ration between all matched keypoints
     vector<double> distRatios; // stores the distance rations for all kpts between curr, and prev. fram
-    float minDist = 10.0;
+    float minDist = 100.0;
 
     for (auto it1 = kptMatches.begin(); it1 != kptMatches.end() - 1; ++it1)
     { // outer kpt. loop
@@ -208,7 +208,6 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
         for (auto it2 = kptMatches.begin() + 1; it2 != kptMatches.end(); ++it2)
         { // inner kpt.-loop
 
-            double minDist = 100.0; // min. required distance
 
             // get next keypoint and its matched partner in the prev. frame
             cv::KeyPoint kpInnerCurr = kptsCurr.at(it2->trainIdx);
@@ -227,7 +226,7 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
         } // eof inner loop over all matched kpts
     }     // eof outer loop over all matched kpts
 
-    if (distRatios.size() == 0)
+    if (distRatios.empty())
     {
         TTC = NAN;
         return;
