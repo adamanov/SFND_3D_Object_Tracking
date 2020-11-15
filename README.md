@@ -63,7 +63,8 @@ Instead of relying on the detection of the vehicle as a whole we now want to ana
 
 ``` c++ 
 void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint> &kptsPrev,
-                                                        std::vector<cv::KeyPoint> &kptsCurr, std::vector<cv::DMatch> &kptMatches)
+                                                        std::vector<cv::KeyPoint> &kptsCurr, 
+                                                        std::vector<cv::DMatch> &kptMatches)
 ```
 
 ### 4. Compute Camera-based TTC
