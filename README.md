@@ -115,3 +115,4 @@ Unfortunately, most of camera based TTC results are computed as NAN.
 
 it occurs basically because distRatio vector is empty in a [camFussion_Student.cpp](src/camFusion_Student.cpp) 
 
+The combination of different detector / descriptor were also done in [Mid-Term](https://github.com/adamanov/SFND_2D_Feature_Tracking) project where It worked well and could be calculated top3.
