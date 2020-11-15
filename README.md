@@ -98,7 +98,14 @@ To improve a measurement of lidar:
 - increase density of point cloud.
 
 ### 6. Performance Evaluation 2
-```Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons.```
-
+`
+Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons.
+`
+There are several ways of showing which methods perform best, following metrics were implemented:
+- Minimum TTC in seconds
+- Maximum TTC in seconds
+- Standard Deviation in seconds
+- Mean in second
+[check out results](images/results.txt)
 
 
