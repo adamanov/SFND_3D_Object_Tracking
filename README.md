@@ -112,5 +112,5 @@ There are several ways of showing which methods perform best, following metrics 
 
 Unfortunately, most of camera based TTC results are computed as NAN.
 
-it occurs basically because distRatio vector is empty. (in a [camFussion_Student.cpp](src/camFussion_Student.cpp))
+it occurs basically because distRatio vector is empty. (in a [camFussion_Student.cpp](src/ camFusion_Student.cpp))
 
