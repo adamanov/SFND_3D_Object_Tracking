@@ -80,9 +80,25 @@ void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPo
                       std::vector<cv::DMatch> kptMatches, double frameRate, double &TTC, cv::Mat *visImg)
 ```
 
-### 5. FP.5 Performance Evaluation 1
-```Find examples where the TTC estimate of the Lidar sensor does not seem plausible. Describe your observations and provide a sound argumentation why you think this happened.```
+### 5. Performance Evaluation 1
+`Find examples where the TTC estimate of the Lidar sensor does not seem plausible. Describe your observations and provide a sound argumentation why you think this happened.`
 
-### 6. FP.6 Performance Evaluation 2
+Even though KD-Tree and Euclidean clustering based on distance threshold were implemented. We can still see some noise or outliers on the top view.
+
+<img src="images/noise_1.png" width="450" height="300" />   <img src="images/noise_1.png" width="450" height="300" /> 
+
+The reason of such as noice could be:
+- lack of lidar sensor calibration
+- curvature shape of front vehicle 
+- reflection from other vehicle 
+
+To improve a measurement of lidar:
+- fusion with camera
+- implement Kalman Filter to improve measurement perfomance 
+- increase density of point cloud.
+
+### 6. Performance Evaluation 2
 ```Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons.```
+
+
 
