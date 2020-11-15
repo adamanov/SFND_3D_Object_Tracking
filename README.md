@@ -36,6 +36,15 @@ Compute the time-to-collision in second for all matched 3D objects using only Li
 
 <img src="images/lidar_sensor.png" width="400" height="160" />  <img src="images/lidar_measurement.png" width="400" height="160" />
 
+The sensor in this scenario will give us the distance to the closest 3D point in the path of driving. In the figure below, the closest point is indicated by a red line emanating from a Lidar sensor on top of the CAS vehicle.
+Based on the model of a constant-velocity we discussed in the last section, the velocity can be computed from two successive Lidar measurements.
+
+Once the relative velocity is known, the time to collision can easily be computed by dividing the remaining distance between both vehicles by. So given a Lidar sensor which is able to take precise distance measurements, a system for TTC estimation can be developed based based on a CVM and on the set of equations shown above
+
+Even though Lidar is a reliable sensor, erroneous measurements may still occur. E.g, a small number of points is located behind the tailgate, seemingly without connection to the vehicle. When searching for the closest points, such measurements will pose a problem as the estimated distance will be too small. There are ways to avoid such errors by post-processing the point cloud, but there will be no guarantee that such problems will never occur in practice.
+
+-  PreProcessing of LidarPoints in order to get rid of random points was implemented. KD-Tree and Euclidean cluster based on distance threshold and min cluster size algorithms were integrated 
+    
 ### 3. Associate Keypoint Correspondences with Bounding Boxes
 ```Prepare the TTC computation based on camera measurements by associating keypoint correspondences to the bounding boxes which enclose them. All matches which satisfy this condition must be added to a vector in the respective bounding box.```
 
