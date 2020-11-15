@@ -1,6 +1,6 @@
 # SFND 3D Object Tracking
 ## [Rubric](https://review.udacity.com/#!/rubrics/2550/view)
-By completing all the lessons, you got a solid understanding of keypoint detectors, descriptors, and methods to match them between successive images. Also, I leant how to detect objects in an image using the YOLO deep-learning framework. And finally, I leant how to associate regions in a camera image with Lidar points in 3D space.
+By completing all the lessons, I got a solid understanding of keypoint detectors, descriptors, and methods to match them between successive images. Also, I leant how to detect objects in an image using the YOLO deep-learning framework. And finally, I leant how to associate regions in a camera image with Lidar points in 3D space.
 
 ```2D_Feature Tracking:``` [Mid-Term_Project](https://github.com/adamanov/SFND_2D_Feature_Tracking)
 
@@ -70,7 +70,11 @@ void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint
 ```
 
 ### 4. Compute Camera-based TTC
-```Compute the time-to-collision in second for all matched 3D objects using only keypoint correspondences from the matched bounding boxes between current and previous frame.```
+With a 2D camera however, the process of TTC computation is more complicated: First, the camera does not perform 3D measurements but only captures a 2D image of the scene. Second, we need to reliably and accurately identify vehicles in order to track their motion over time. 
+To compute the TTC, we need to rely on the scale change of a vehicle (i.e. its increase in size on the image sensor in successive frames).
+
+<img src="images/camera_.png" width="400" height="160" />   <img src="images/camera_measurement.png" width="500" height="250" /> 
+
 ```c++ 
 void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPoint> &kptsCurr, 
                       std::vector<cv::DMatch> kptMatches, double frameRate, double &TTC, cv::Mat *visImg)
