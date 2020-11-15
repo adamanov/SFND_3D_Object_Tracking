@@ -46,7 +46,8 @@ Even though Lidar is a reliable sensor, erroneous measurements may still occur. 
 -  PreProcessing of LidarPoints in order to get rid of random points was implemented. KD-Tree and Euclidean cluster based on distance threshold and min cluster size algorithms were integrated 
 
 ``` c++
-void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev, std::vector<LidarPoint> &lidarPointsCurr, double frameRate, double &TTC)
+void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev, 
+                     std::vector<LidarPoint> &lidarPointsCurr, double frameRate, double &TTC)
 ```
     
 ### 3. Associate Keypoint Correspondences with Bounding Boxes
@@ -61,7 +62,8 @@ Instead of relying on the detection of the vehicle as a whole we now want to ana
 ``` To do that, a robust mean of all the euclidean distances between keypoint matches were computed and then removed those that are too far away from the mean```
 
 ``` c++ 
-void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPoint> &kptsCurr, std::vector<cv::DMatch> &kptMatches)
+void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint> &kptsPrev,
+                                                        std::vector<cv::KeyPoint> &kptsCurr, std::vector<cv::DMatch> &kptMatches)
 ```
 
 ### 4. Compute Camera-based TTC
