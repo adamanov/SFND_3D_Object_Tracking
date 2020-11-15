@@ -10,14 +10,25 @@ By completing all the lessons, you got a solid understanding of keypoint detecto
 ### 1. Match 3D Objects
 YOLO is well know Deep Learning algoirthm which can very fast produce boundingbox with live camera.
 By using the YOLOv3 framework, we can extract a set of objects from a camera image that are represented by an enclosing rectangle (a "region of interest" or ROI) as well as a class label that identifies the type of object, e.g. a vehicle.
-<img src="images/yolo-workflow.jpg" width="440" height="320" />  <img src="images/draggedimage-8.png" width="500" height="150" />
+
+<img src="images/yolo-workflow.jpg" width="330" height="205" />  <img src="images/draggedimage-8.png" width="500" height="150" />
 
 The objective of this task is to implement the method "matchBoundingBoxes", which takes as input both the previous and the current data frames and provides as output the IDs of the matched regions of interest. (i.e the boxID property)
-Implementation overview:
+-   Implementation overview:
 1.  For each bounding ox in the current frame (currFrameBBox), iterate through all the keypoint matches.
 2.  If we find a bounding box containing currFramePoint, we then consider its matched previous frame (prevFramePoint) and we try to find the associated bounding box ID (prevFrameBBOx.boxID)
 3.  Store how many correspondences there are between the currFrameBBox and the PrevFrameBBox
 4.  The prevFrameBBox with highest number of the keypoint correspondences is finally considered to be the best match  
+
+``` C++ 
+for (auto descr = matches.begin(); descr != matches.end(); ++descr)
+  for (auto pBox = prevFrame.boundingBoxes.begin(); pBox != prevFrame.boundingBoxes.end(); ++pBox)
+    if (pBox->roi.contains(prevFrame.keypoints[idxPrevious].pt) )
+      for (auto cBox = currFrame.boundingBoxes.begin(); cBox != currFrame.boundingBoxes.end(); ++cBox)
+        if (cBox->roi.contains(currFrame.keypoints[idxCurrent].pt))
+        count.at<int>(prevBoxID,currBoxID) = count.at<int>(prevBoxID,currBoxID) + 1;
+```
+
 
 
 ### 2. Compute Lidar-based TTC
