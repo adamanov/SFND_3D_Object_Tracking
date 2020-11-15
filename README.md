@@ -46,7 +46,15 @@ Even though Lidar is a reliable sensor, erroneous measurements may still occur. 
 -  PreProcessing of LidarPoints in order to get rid of random points was implemented. KD-Tree and Euclidean cluster based on distance threshold and min cluster size algorithms were integrated 
     
 ### 3. Associate Keypoint Correspondences with Bounding Boxes
-```Prepare the TTC computation based on camera measurements by associating keypoint correspondences to the bounding boxes which enclose them. All matches which satisfy this condition must be added to a vector in the respective bounding box.```
+When observed closely however, it can be seen that the bounding boxes do not always reflect the true vehicle dimensions and the aspect ratio differs between images. Using bounding box height or width for TTC computation would thus lead to significant estimation errors.
+
+<img src="images/new-group.jpg" width="500" height="200" /> 
+
+Instead of relying on the detection of the vehicle as a whole we now want to analyze its structure on a smaller scale. If it were possible to locate uniquely identifiable keypoints that could be tracked from one frame to the next, we could use the distance between all keypoints on the vehicle relative to each other to compute a robust estimate of the height ratio in out TTC equation. The following figure illustrates the concept.
+
+<img src="images/9.png" width="400" height="160" />  
+
+
 
 ### 4. Compute Camera-based TTC
 ```Compute the time-to-collision in second for all matched 3D objects using only keypoint correspondences from the matched bounding boxes between current and previous frame.```
