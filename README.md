@@ -32,7 +32,9 @@ for (auto descr = matches.begin(); descr != matches.end(); ++descr)
 
 
 ### 2. Compute Lidar-based TTC
-```Compute the time-to-collision in second for all matched 3D objects using only Lidar measurements from the matched bounding boxes between current and previous frame```
+Compute the time-to-collision in second for all matched 3D objects using only Lidar measurements from the matched bounding boxes between current and previous frame
+
+<img src="images/lidar_sensor.png" width="400" height="160" />  <img src="images/lidar_measurement.png" width="400" height="160" />
 
 ### 3. Associate Keypoint Correspondences with Bounding Boxes
 ```Prepare the TTC computation based on camera measurements by associating keypoint correspondences to the bounding boxes which enclose them. All matches which satisfy this condition must be added to a vector in the respective bounding box.```
