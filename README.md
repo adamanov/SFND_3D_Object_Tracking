@@ -102,6 +102,7 @@ To improve a measurement of lidar:
 Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons.
 `
 There are several ways of showing which methods perform best, following metrics were implemented:
+
 - Minimum TTC in seconds
 - Maximum TTC in seconds
 - Standard Deviation in seconds
