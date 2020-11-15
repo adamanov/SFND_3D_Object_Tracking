@@ -81,10 +81,10 @@ int main(int argc, const char *argv[])
 
 
     // SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
-    string detectorType = "AKAZE";      //FAST, BRISK, ORB, AKAZE, SIFT
+    string detectorType = "SIFT";      //FAST, BRISK, ORB, AKAZE, SIFT
 
     // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
-    string descriptorType = "BRISK"; // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
+    string descriptorType = "SIFT"; // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
     std::vector<double> ttcCameraVec;
 
     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex+=imgStepWidth)
@@ -316,7 +316,7 @@ int main(int argc, const char *argv[])
     std::cout << "**************SUMMARY*************" << std::endl;
     std::cout << detectorType << " + " << descriptorType << std::endl;
     for (auto ttc : ttcCameraVec) {
-        std::cout << ttc << "   ";
+        std::cout << ttc << "  |  ";
     }
     std::cout << std::endl;
     std::cout << "Max TTC = " << *std::max_element(std::begin(ttcCameraVec), std::end(ttcCameraVec)) <<  std::endl;

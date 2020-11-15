@@ -168,15 +168,12 @@ void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint
     int size = EuclideanDistance.size();
     float EuclDistMedian = EuclideanDistance.size() %2 == 0 ? (EuclideanDistance[size/ 2.0] + EuclideanDistance[size/ 2 -1]) /2 : EuclideanDistance[size/2];
 
-
     for (const auto& kptMatche : kptMatches)
     {
             if (boundingBox.roi.contains(kptsCurr[kptMatche.trainIdx].pt))
             {
                 double temp_dist = cv::norm(kptsCurr[kptMatche.trainIdx].pt - kptsPrev[kptMatche.queryIdx].pt);
-
                 // if bigger than Euclidean distance and Median values then add to BB.
-
                 //if ((temp_dist > (EuclDistMedian - maxDistanceFromMedian)) && (temp_dist < (EuclDistMedian + maxDistanceFromMedian)) && (temp_dist < EuclDistMean*1.5))
                 if (temp_dist < EuclDistMean*1.5)
                 {
