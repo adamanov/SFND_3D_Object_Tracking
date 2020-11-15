@@ -45,7 +45,7 @@ Once the relative velocity is known, the time to collision can easily be compute
 
 Even though Lidar is a reliable sensor, erroneous measurements may still occur. E.g, a small number of points is located behind the tailgate, seemingly without connection to the vehicle. When searching for the closest points, such measurements will pose a problem as the estimated distance will be too small. There are ways to avoid such errors by post-processing the point cloud, but there will be no guarantee that such problems will never occur in practice.
 
--  PreProcessing of LidarPoints in order to get rid of random points was implemented. KD-Tree and Euclidean cluster based on distance threshold and min cluster size algorithms were integrated 
+##### PreProcessing of LidarPoints in order to get rid of random points was implemented. KD-Tree and Euclidean cluster based on distance threshold and min cluster size algorithms were integrated 
 
 ``` c++
 void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev, 
@@ -61,7 +61,7 @@ Instead of relying on the detection of the vehicle as a whole we now want to ana
 
 <img src="images/9.png" width="400" height="160" />  
 
-``` To do that, a robust mean of all the euclidean distances between keypoint matches were computed and then removed those that are too far away from the mean```
+##### To do that, a robust mean of all the euclidean distances between keypoint matches were computed and then removed those that are too far away from the mean
 
 ``` c++ 
 void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint> &kptsPrev,
