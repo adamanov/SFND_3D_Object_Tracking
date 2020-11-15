@@ -110,4 +110,6 @@ There are several ways of showing which methods perform best, following metrics 
 
 [check out results](images/results.txt)
 
+Unfortunately, most of camera based TTC results are computed as NAN.
+it happens basically because of distRatio vector is empty. (in a [camFussion_Student.cpp](src/camFussion_Student.cpp))
 
