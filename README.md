@@ -21,12 +21,14 @@ The objective of this task is to implement the method "matchBoundingBoxes", whic
 4.  The prevFrameBBox with highest number of the keypoint correspondences is finally considered to be the best match  
 
 ``` C++ 
-for (auto descr = matches.begin(); descr != matches.end(); ++descr)
-  for (auto pBox = prevFrame.boundingBoxes.begin(); pBox != prevFrame.boundingBoxes.end(); ++pBox)
-    if (pBox->roi.contains(prevFrame.keypoints[idxPrevious].pt) )
-      for (auto cBox = currFrame.boundingBoxes.begin(); cBox != currFrame.boundingBoxes.end(); ++cBox)
-        if (cBox->roi.contains(currFrame.keypoints[idxCurrent].pt))
-        count.at<int>(prevBoxID,currBoxID) = count.at<int>(prevBoxID,currBoxID) + 1;
+void matchBoundingBoxes(std::vector<cv::DMatch> &matches, std::map<int, int> &bbBestMatches, DataFrame &prevFrame, DataFrame &currFrame)
+
+  for (auto descr = matches.begin(); descr != matches.end(); ++descr)
+    for (auto pBox = prevFrame.boundingBoxes.begin(); pBox != prevFrame.boundingBoxes.end(); ++pBox)
+      if (pBox->roi.contains(prevFrame.keypoints[idxPrevious].pt) )
+        for (auto cBox = currFrame.boundingBoxes.begin(); cBox != currFrame.boundingBoxes.end(); ++cBox)
+          if (cBox->roi.contains(currFrame.keypoints[idxCurrent].pt))
+          count.at<int>(prevBoxID,currBoxID) = count.at<int>(prevBoxID,currBoxID) + 1;
 ```
 
 
