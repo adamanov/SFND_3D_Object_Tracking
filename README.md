@@ -8,9 +8,9 @@ By completing all the lessons, you got a solid understanding of keypoint detecto
 
 ## TASKS:
 ### 1. Match 3D Objects
-<img src="images/yolo-workflow.jpg" width="440" height="320" />
-
 By using the YOLOv3 framework, we can extract a set of objects from a camera image that are represented by an enclosing rectangle (a "region of interest" or ROI) as well as a class label that identifies the type of object, e.g. a vehicle.
+<img src="images/yolo-workflow.jpg" width="440" height="320" />  <img src="images/draggedimage-8.png" width="500" height="150" />
+
 
 ### 2. Compute Lidar-based TTC
 ```Compute the time-to-collision in second for all matched 3D objects using only Lidar measurements from the matched bounding boxes between current and previous frame```
