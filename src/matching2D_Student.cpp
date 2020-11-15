@@ -89,8 +89,8 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
     }
     else if (descriptorType.compare("SIFT")==0)
     {
-        //extractor = cv::SIFT::create(); // same thing as below
-        extractor = cv::xfeatures2d::SiftDescriptorExtractor::create(); // <-- Bu dogru
+        extractor = cv::SIFT::create(); // same thing as below
+        //extractor = cv::xfeatures2d::SiftDescriptorExtractor::create(); // <-- Bu dogru
     }
     else if (descriptorType.compare("SURF")==0)
     {
@@ -279,8 +279,8 @@ void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std:
     }
     else if (detectorType.compare("SIFT") ==0)
     {
-        cv::Ptr<cv::FeatureDetector> sift_detector = cv::xfeatures2d::SIFT::create(); // <-- Bu dogru
-        //cv::Ptr<cv::FeatureDetector> sift_detector = cv::SIFT::create();
+        //cv::Ptr<cv::FeatureDetector> sift_detector = cv::xfeatures2d::SIFT::create(); // <-- Bu dogru
+        cv::Ptr<cv::FeatureDetector> sift_detector = cv::SIFT::create();
 
         double t = (double)cv::getTickCount();
         sift_detector->detect(img,keypoints);

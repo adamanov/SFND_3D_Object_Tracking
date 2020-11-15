@@ -1,5 +1,8 @@
 
 /* INCLUDES FOR THIS PROJECT */
+#include <numeric>
+#include <functional>
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -76,6 +79,14 @@ int main(int argc, const char *argv[])
 
     /* MAIN LOOP OVER ALL IMAGES */
 
+
+    // SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
+    string detectorType = "AKAZE";      //FAST, BRISK, ORB, AKAZE, SIFT
+
+    // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
+    string descriptorType = "BRISK"; // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
+    std::vector<double> ttcCameraVec;
+
     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex+=imgStepWidth)
     {
         /* LOAD IMAGE INTO BUFFER */
@@ -129,7 +140,7 @@ int main(int argc, const char *argv[])
         clusterLidarWithROI((dataBuffer.end()-1)->boundingBoxes, (dataBuffer.end() - 1)->lidarPoints, shrinkFactor, P_rect_00, R_rect_00, RT);
 
         // Visualize 3D objects
-        bVis = true;
+        bVis = false;
         if(bVis)
         {
             show3DObjects((dataBuffer.end()-1)->boundingBoxes, cv::Size(4.0, 20.0), cv::Size(2000, 2000), true);
@@ -150,7 +161,6 @@ int main(int argc, const char *argv[])
 
         // extract 2D keypoints from current image
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
-        string detectorType = "AKAZE";      //FAST, BRISK, ORB, AKAZE, SIFT
 
 
         if (detectorType.compare("SHITOMASI") == 0)
@@ -190,7 +200,6 @@ int main(int argc, const char *argv[])
         /* EXTRACT KEYPOINT DESCRIPTORS */
 
         cv::Mat descriptors;
-        string descriptorType = "BRISK"; // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
         descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
 
         // push descriptors for current frame to end of data buffer
@@ -263,6 +272,11 @@ int main(int argc, const char *argv[])
                     //// TASK FP.2 -> compute time-to-collision based on Lidar data (implement -> computeTTCLidar)
                     double ttcLidar; 
                     computeTTCLidar(prevBB->lidarPoints, currBB->lidarPoints, sensorFrameRate, ttcLidar);
+                    std::cout<<"Time to Colission : ,"<< ttcLidar<<std::endl;
+                    cv::Size worldSize(10.0, 20.0); // width and height of sensor field in m
+                    cv::Size imageSize(1000, 2000); // corresponding top view image in pixel
+
+                    showLidarTopview(prevBB->lidarPoints,worldSize,imageSize,false);
                     //// EOF STUDENT ASSIGNMENT
 
                     //// STUDENT ASSIGNMENT
@@ -271,9 +285,10 @@ int main(int argc, const char *argv[])
                     double ttcCamera;
                     clusterKptMatchesWithROI(*currBB, (dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->kptMatches);                    
                     computeTTCCamera((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints, currBB->kptMatches, sensorFrameRate, ttcCamera);
+                    ttcCameraVec.push_back(ttcCamera);
                     //// EOF STUDENT ASSIGNMENT
 
-                    bVis = true;
+                    bVis = false;
                     if (bVis)
                     {
                         cv::Mat visImg = (dataBuffer.end() - 1)->cameraImg.clone();
@@ -293,11 +308,31 @@ int main(int argc, const char *argv[])
                     bVis = false;
 
                 } // eof TTC computation
-            } // eof loop over all BB matches            
-
-        }
-
+            } // eof loop over all BB matches
+        } // eof checking 2 images
     } // eof loop over all images
+
+    std::cout << std::endl;
+    std::cout << "**************SUMMARY*************" << std::endl;
+    std::cout << detectorType << " + " << descriptorType << std::endl;
+    for (auto ttc : ttcCameraVec) {
+        std::cout << ttc << "   ";
+    }
+    std::cout << std::endl;
+    std::cout << "Max TTC = " << *std::max_element(std::begin(ttcCameraVec), std::end(ttcCameraVec)) <<  std::endl;
+    std::cout << "Min TTC = " << *std::min_element(std::begin(ttcCameraVec), std::end(ttcCameraVec)) <<  std::endl;
+
+    double sum = std::accumulate(ttcCameraVec.begin(), ttcCameraVec.end(), 0.0);
+    double mean = sum / ttcCameraVec.size();
+
+    std::vector<double> diff(ttcCameraVec.size());
+    std::transform(ttcCameraVec.begin(), ttcCameraVec.end(), diff.begin(), [mean](double x) { return x - mean; });
+    double sq_sum = std::inner_product(diff.begin(), diff.end(), diff.begin(), 0.0);
+    double stdev = std::sqrt(sq_sum / ttcCameraVec.size());
+
+    std::cout << "Mean = " << mean << std::endl;
+    std::cout << "Standard Deviation = " << stdev << std::endl;
+    std::cout << "**********************************" << std::endl;
 
     return 0;
 }
