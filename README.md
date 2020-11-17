@@ -97,6 +97,18 @@ To improve a measurement of lidar:
 - implement Kalman Filter to improve measurement perfomance 
 - increase density of point cloud.
 
+There are several reasons that leads to inaccurate camera-based TTC estimation:
+
+Key-points mismatching, e.g. the key-point detected from turn signal lamp matches to the key-point on the roof in scenario 1.
+Sensitive scale change and significant contrast change. In scenario 2, some key-points from the rear part of the roof in previous frame associate with the key-points from front part of the roof in current frame. Part of the reason is due to contrast change from lighting conditions or occlusion. It makes the distance ratio between two frames very close to 1, so our host vehicle and preceding vehicle looks relatively static between 2 frames and our TTL turns out to be a pretty large value at the end.
+
+There are several ways that you can improve it:
+
+Use more complex detector/descriptor combinations, e.g. SIFT, SIFT uses the Euclidean distance between two feature vectors as the similarity criteria of the two key points and uses the nearest neighbor algorithm to match each other. These kind of detector/descriptor is more accurate than any other descriptors and able to provide rotation and scale invariant.
+Fuse with LiDAR sensor, so that camera can provide more semantic information, such as key-points and matches between multiple frames, and LiDAR and provide more accurate direct distance measurement.
+Compare multiple frames instead of only considering 2 consecutive frames.
+Add Kalman filter to tracking TTC by minimalizing covariance
+
 ### 6. Performance Evaluation 2
 `
 Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons.
