@@ -89,14 +89,18 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
     }
     else if (descriptorType.compare("SIFT")==0)
     {
+
         extractor = cv::SIFT::create(); // same thing as below
-        //extractor = cv::xfeatures2d::SiftDescriptorExtractor::create(); // <-- Bu dogru
+        //extractor = cv::xfeatures2d::SiftDescriptorExtractor::create(); // <-- This one is correct
+        //        cv::Mat img8U,imgGray;
+        //        img.convertTo(img8U, CV_8U);
+        //        cv::cvtColor(img, imgGray, cv::COLOR_BGR2GRAY);
     }
     else if (descriptorType.compare("SURF")==0)
     {
         //extractor = cv::xfeatures2d::SURF::create();
         int minHessian = 400;
-        //extractor = cv::xfeatures2d::SurfDescriptorExtractor::create(minHessian); // <-- Bu dogru
+        //extractor = cv::xfeatures2d::SurfDescriptorExtractor::create(minHessian); // <-- This one is correct
     }
     else
     {
@@ -238,7 +242,6 @@ void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std:
 {
     //FAST, BRISK, ORB, AKAZE, SIFT
 
-
     if(detectorType.compare("FAST") == 0)
     {
         double t = (double)cv::getTickCount();
@@ -283,7 +286,10 @@ void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std:
         cv::Ptr<cv::FeatureDetector> sift_detector = cv::SIFT::create();
 
         double t = (double)cv::getTickCount();
-        sift_detector->detect(img,keypoints);
+        cv::Mat img8U,imgGray;
+        //img.convertTo(img8U, CV_8U);
+        cv::cvtColor(img, imgGray, cv::COLOR_BGR2GRAY);
+        sift_detector->detect(imgGray,keypoints);
         t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
         cout << "SIFT detector with n= " << keypoints.size() << " keypoints in " << 1000 * t / 1.0 << " ms" << endl;
     }

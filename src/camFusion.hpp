@@ -15,14 +15,26 @@ void matchBoundingBoxes(std::vector<cv::DMatch> &matches, std::map<int, int> &bb
 
 void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, cv::Size imageSize, bool bWait=true);
 
-void computeTTCCamera(std::vector<cv::KeyPoint> &kptsPrev, std::vector<cv::KeyPoint> &kptsCurr,
-                      std::vector<cv::DMatch> kptMatches, double frameRate, double &TTC, cv::Mat *visImg=nullptr);
+void computeTTCCamera(const std::vector<cv::KeyPoint> &kptsPrev,const std::vector<cv::KeyPoint> &kptsCurr,
+                      const std::vector<cv::DMatch> kptMatches, double frameRate, double &TTC, cv::Mat *visImg=nullptr);
+
 void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
                      std::vector<LidarPoint> &lidarPointsCurr, double frameRate, double &TTC);
 
+
 // Support functions for kdTree and eucledian Clustering
-void clusterHelper(int indice, const std::vector<std::vector<float>>& points, std::vector<int>& cluster, std::vector<bool>& processed, KdTree* tree, float distanceTol);
-std::vector<std::vector<int>> euclideanCluster(const std::vector<std::vector<float>>& points, KdTree* tree, float distanceTol);
-void preProcessing (std::vector<LidarPoint> &lidarPoints,float distanceTol = 0.1,int minSize = 20);
+void clusterHelper(int index, const std::vector<std::vector<float>>& points, std::vector<int>& cluster, std::vector<bool>& processed,
+                   const std::shared_ptr<KdTree>& tree, float distanceTol);
+
+std::vector<std::vector<int>> euclideanCluster(const std::vector<std::vector<float>>& points,
+                                               const std::shared_ptr<KdTree>& tree, float distanceTol);
+
+void preProcessing (std::vector<LidarPoint> &lidarPoints,float distanceTol,int minSize = 20);
+
+// Suggestion from Udacity
+std::vector<LidarPoint> removeLidarOutlier(const std::vector<LidarPoint> &lidarPoints, float clusterTolerance);
+
+template<typename KeyType, typename ValueType>
+std::pair<KeyType, ValueType> get_max(const std::map<KeyType, ValueType>& x);
 
 #endif /* camFusion_hpp */
