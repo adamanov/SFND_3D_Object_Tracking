@@ -101,6 +101,7 @@ To improve a measurement of lidar:
 `
 Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons.
 `
+
 There are several ways of showing which methods perform best, following metrics were implemented:
 
 - Minimum TTC in seconds
@@ -110,4 +111,8 @@ There are several ways of showing which methods perform best, following metrics 
 
 [check out results](images/results.txt)
 
+Unfortunately, most of camera based TTC results are computed as NAN.
 
+it occurs basically because distRatio vector is empty in a [camFussion_Student.cpp](src/camFusion_Student.cpp) 
+
+The combination of different detector / descriptor were also done in [Mid-Term](https://github.com/adamanov/SFND_2D_Feature_Tracking) project where It worked well and could be calculated top3.
