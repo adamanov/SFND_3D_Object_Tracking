@@ -134,7 +134,7 @@ The table shows the evaluation based on **Maximum TTC in second**
   
   
   The **SIFT Descriptor** shows the closest perfomance to Lidar TTC, although it is still not close enough.   
-  The **ORB Descritpro** shows the worsest perfomance amoung of all other descriptors. 
+  The **ORB Descriptor** shows the worsest perfomance amoung of all other descriptors. 
   
   [check out results](images/results.txt)
   
