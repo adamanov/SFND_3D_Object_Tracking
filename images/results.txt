@@ -1,188 +1,212 @@
+**************SUMMARY************* 
+HARRIS + BRISK 
+- No output 
+**************SUMMARY************* 
+HARRIS + BRIEF 
+- No output 
+**************SUMMARY************* 
+HARRIS + ORB 
+- No output 
+**************SUMMARY************* 
+HARRIS + FREAK 
+- Not completed  
+**************SUMMARY************* 
+HARRIS + AKAZE 
+- No output 
+**************SUMMARY************* 
+HARRIS + SIFT 
+- No output 
+**************SUMMARY************* 
+FAST + BRISK 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+FAST + BRIEF 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+FAST + ORB 
+10.9082  |  63.8475  |  -161.705  |  11.5792  |  13.6432  |  13.5907  |  13.497  |  13.5704  |  30.8359  |  13.1502  |  11.2142  |  11.3141  |  34.3656  |  11.1055  |  -inf  |  6.71705  |  12.5848  |  -inf  |   
+Max TTC = 63.8475 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+FAST + FREAK 
+-  could not perform FREAK descriptor.
+**************SUMMARY************* 
+FAST + AKAZE 
+- Error 
 **************SUMMARY*************
-AKAZE + BRISK
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-
-**************SUMMARY*************
-FAST + BRISK
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-
-**************SUMMARY*************
-FAST + BRIEF
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-
-**************SUMMARY*************
-FAST + ORB
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-FAST + FREAK
----
-**********************************
-FAST + AKAXE
---error
-**********************************
-FAST +SIFt 
---error 
-**********************************
-**************SUMMARY*************
-BRISK + BRISK
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-BRISK + BRIEF
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
+FAST + SIFT
+10.9082  |  -18.6701  |  -20.0948  |  11.5792  |  13.3698  |  13.5907  |  13.497  |  13.5704  |  12.9165  |  13.1502  |  11.7414  |  11.8031  |  34.3656  |  11.322  |  -inf  |  6.60338  |  12.6612  |  -inf  |  
+Max TTC = 34.3656
+Min TTC = -inf
+Mean = -inf
+Standard Deviation = -nan
 **********************************
 **************SUMMARY*************
-BRISK + ORB
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-BRISK + FREAK
---error
-**********************************
+BRISK + BRISK 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+BRISK + BRIEF 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+BRISK + ORB 
+10.9082  |  63.8475  |  -161.705  |  11.5792  |  13.6432  |  13.5907  |  13.497  |  13.5704  |  30.8359  |  13.1502  |  11.2142  |  11.3141  |  34.3656  |  11.1055  |  -inf  |  6.71705  |  12.5848  |  -inf  |   
+Max TTC = 63.8475 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+BRISK + FREAK 
+-  could not perform FREAK descriptor.
+**************SUMMARY************* 
+BRISK + AKAZE 
+- Error 
 **************SUMMARY*************
 BRISK + SIFT
---error
-**********************************
-**************SUMMARY*************
-ORB + BRISK
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-ORB + BRIEF
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-ORB + ORB
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-ORB + FREAK
--- not terminated
-**********************************
-**************SUMMARY*************
-ORB + AKAZE
--- error
-**********************************
+10.9082  |  -18.6701  |  -20.0948  |  11.5792  |  13.3698  |  13.5907  |  13.497  |  13.5704  |  12.9165  |  13.1502  |  11.7414  |  11.8031  |  34.3656  |  11.322  |  -inf  |  6.60338  |  12.6612  |  -inf  |  
+Max TTC = 34.3656
+Min TTC = -inf
+Mean = -inf
+Standard Deviation = -nan
+**************SUMMARY************* 
+ORB + BRISK 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+ORB + BRIEF 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+ORB + ORB 
+10.9082  |  63.8475  |  -161.705  |  11.5792  |  13.6432  |  13.5907  |  13.497  |  13.5704  |  30.8359  |  13.1502  |  11.2142  |  11.3141  |  34.3656  |  11.1055  |  -inf  |  6.71705  |  12.5848  |  -inf  |   
+Max TTC = 63.8475 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+**********************************\ 
+**************SUMMARY************* 
+ORB + FREAK 
+-  could not perform FREAK descriptor.
+**********************************\ 
+**************SUMMARY************* 
+ORB + AKAZE 
+- Error 
+**************SUMMARY************* 
+ORB + AKAZE 
+- Error 
 **************SUMMARY*************
 ORB + SIFT
---error
-**************SUMMARY*************
-AKAZE + BRISK
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
+10.9082  |  -18.6701  |  -20.0948  |  11.5792  |  13.3698  |  13.5907  |  13.497  |  13.5704  |  12.9165  |  13.1502  |  11.7414  |  11.8031  |  34.3656  |  11.322  |  -inf  |  6.60338  |  12.6612  |  -inf  |  
+Max TTC = 34.3656
+Min TTC = -inf
+Mean = -inf
+Standard Deviation = -nan
 **********************************
-**************SUMMARY*************
-AKAZE + BRIEF
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-AKAZE + ORB
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-AKAZE + FREAK
--- not terminated
-**********************************
-**************SUMMARY*************
-AKAZE + AZAKE
--- error
-**********************************
+**************SUMMARY************* 
+AKAZE + BRISK 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+AKAZE + BRIEF 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+AKAZE + ORB 
+10.9082  |  63.8475  |  -161.705  |  11.5792  |  13.6432  |  13.5907  |  13.497  |  13.5704  |  30.8359  |  13.1502  |  11.2142  |  11.3141  |  34.3656  |  11.1055  |  -inf  |  6.71705  |  12.5848  |  -inf  |   
+Max TTC = 63.8475 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+AKAZE + FREAK 
+-  could not perform FREAK descriptor.
+**************SUMMARY************* 
+AKAZE + AKAZE 
+- Error 
 **************SUMMARY*************
 AKAZE + SIFT
---error
+10.9082  |  -18.6701  |  -20.0948  |  11.5792  |  13.3698  |  13.5907  |  13.497  |  13.5704  |  12.9165  |  13.1502  |  11.7414  |  11.8031  |  34.3656  |  11.322  |  -inf  |  6.60338  |  12.6612  |  -inf  |  
+Max TTC = 34.3656
+Min TTC = -inf
+Mean = -inf
+Standard Deviation = -nan
 **********************************
-**************SUMMARY*************
-SIFT + BRISK
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-SIFT + BRIEF
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-SIFT + ORB
-nan  |  nan  |  -80.8525  |  10.9782  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  nan  |  8.7303  |  nan  |  nan  |  
-Max TTC = nan
-Min TTC = nan
-Mean = nan
-Standard Deviation = nan
-**********************************
-**************SUMMARY*************
-SIFT + FREAK
--- not terminated
-**********************************
-**************SUMMARY*************
-SIFT + AKAZE
--- Error
-**********************************
-**************SUMMARY*************
-SIFT + SIFT
--- Error?
-
-
-
-
-
+**************SUMMARY************* 
+SIFT + BRISK 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+SIFT + BRIEF 
+10.9082  |  10.195  |  -161.705  |  11.3951  |  44.9166  |  13.5599  |  31.7956  |  -inf  |  0.272758  |  -inf  |  11.8135  |  11.3141  |  14.1613  |  11.2  |  -inf  |  8.52258  |  12.5848  |  0.687055  |   
+Max TTC = 44.9166 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+SIFT + ORB 
+10.9082  |  63.8475  |  -161.705  |  11.5792  |  13.6432  |  13.5907  |  13.497  |  13.5704  |  30.8359  |  13.1502  |  11.2142  |  11.3141  |  34.3656  |  11.1055  |  -inf  |  6.71705  |  12.5848  |  -inf  |   
+Max TTC = 63.8475 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
+**************SUMMARY************* 
+SIFT + FREAK 
+- could not perform FREAK descriptor.
+********************************** 
+**************SUMMARY************* 
+SIFT + AKAZE 
+- Error 
+**************SUMMARY************* 
+SIFT + SIFT 
+10.9082  |  -18.6701  |  -20.0948  |  11.5792  |  13.3698  |  13.5907  |  13.497  |  13.5704  |  12.9165  |  13.1502  |  11.7414  |  11.8031  |  34.3656  |  11.322  |  -inf  |  6.60338  |  12.6612  |  -inf  |   
+Max TTC = 34.3656 
+Min TTC = -inf 
+Mean = -inf 
+Standard Deviation = -nan 
+********************************** 
