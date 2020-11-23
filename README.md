@@ -132,7 +132,8 @@ The table shows the evaluation based on **Maximum TTC in second**
   | **_AKAZE_**           | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
   | **_SIFT_**            | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
   
-  The **SIFT Descriptor** shows the closest perfomance to Lidar TTC, although it is still not close enough.
+  
+  The **SIFT Descriptor** shows the closest perfomance to Lidar TTC, although it is still not close enough.   
   The **ORB Descritpro** shows the worsest perfomance amoung of all other descriptors. 
   
   [check out results](images/results.txt)
