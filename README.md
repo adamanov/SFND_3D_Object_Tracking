@@ -110,9 +110,8 @@ Compare multiple frames instead of only considering 2 consecutive frames.
 Add Kalman filter to tracking TTC by minimalizing covariance
 
 ### 6. Performance Evaluation 2
-`
-Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons.
-`
+
+_Run several detector / descriptor combinations and look at the differences in TTC estimation. Find out which methods perform best and also include several examples where camera-based TTC estimation is way off. As with Lidar, describe your observations again and also look into potential reasons._
 
 There are several ways of showing which methods perform best, following metrics were implemented:
 
