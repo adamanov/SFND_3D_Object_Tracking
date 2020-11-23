@@ -124,13 +124,16 @@ There are several ways of showing which methods perform best, following metrics 
 The table shows the evaluation based on **Maximum TTC in second**
 
   | _Detector_/Descriptor |BRISK	    | BRIEF	  |ORB	    |FREAK	            |AKAZE	|SIFT    |  
-  | --------------------|-----------|---------|---------|-------------------|-------|--------|  
+  | ----------------------|-----------|---------|---------|-------------------|-------|--------|  
   | **_HARRIS_**          |	N/A	      | N/A	    |N/A	    |N/A	              |N/A	  |N/A     |  
   | **_FAST_**            | 44,9166	  |44,8166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
   | **_BRISK_**           | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
   | **_ORB_**             | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
   | **_AKAZE_**           | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
   | **_SIFT_**            | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
+  
+  The **SIFT Descriptor** shows the closest perfomance to Lidar TTC, although it is still not close enough.
+  The **ORB Descritpro** shows the worsest perfomance amoung of all other descriptors. 
   
   [check out results](images/results.txt)
   
