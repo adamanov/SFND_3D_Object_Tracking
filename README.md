@@ -122,9 +122,14 @@ There are several ways of showing which methods perform best, following metrics 
 - Mean in second
 
 [check out results](images/results.txt)
-
-Unfortunately, most of camera based TTC results are computed as NAN.
-
-it occurs basically because distRatio vector is empty in a [camFussion_Student.cpp](src/camFusion_Student.cpp) 
+_________________________________________________________________________________________
+|Detector/Descriptor |BRISK	    | BRIEF	  |ORB	    |FREAK	            |AKAZE	|SIFT   |
+|HARRIS              |	N/A	    | N/A	    |N/A	    |N/A	              |N/A	  |N/A    |
+|FAST	               | 44,9166	|44,8166	|63,8475	|Descriptor failed	|Error	|34,3656|
+|BRISK	             | 44,9166	|44,9166	|63,8475	|Descriptor failed	|Error	|34,3656|
+|ORB	               | 44,9166	|44,9166	|63,8475	|Descriptor failed	|Error	|34,3656|
+|AKAZE	             | 44,9166	|44,9166	|63,8475	|Descriptor failed	|Error	|34,3656|
+|SIFT	               | 44,9166	|44,9166	|63,8475	|Descriptor failed	|Error	|34,3656|
+_________________________________________________________________________________________
 
 The combination of different detector / descriptor were also done in [Mid-Term](https://github.com/adamanov/SFND_2D_Feature_Tracking) project where It worked well and could be calculated top3.
