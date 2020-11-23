@@ -15,6 +15,9 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
     {
         //int normType = cv::NORM_HAMMING;
         int normType  = descriptorType.compare("DES_BINARY")==0 ? cv::NORM_HAMMING : cv::NORM_L2;
+        descSource.convertTo(descSource, CV_8U);
+        descRef.convertTo(descRef, CV_8U);
+        std::cout<<" I was here" <<std::endl;
         matcher = cv::BFMatcher::create(normType, crossCheck);
     }
     else if (matcherType.compare("MAT_FLANN") == 0)
@@ -79,12 +82,13 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
     else if (descriptorType.compare("FREAK")==0)
     {
         cv::xfeatures2d::FREAK extractor;
-        //extractor = cv::xfeatures2d::FREAK::create(); // <-- Bu dogru
+        // extractor = cv::xfeatures2d::FREAK::create(); // <-- Alternative version for Udacity VM
 
     }
     else if (descriptorType.compare("AKAZE") == 0)
     {
         extractor = cv::AKAZE::create();
+
 
     }
     else if (descriptorType.compare("SIFT")==0)
@@ -92,9 +96,12 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
 
         extractor = cv::SIFT::create(); // same thing as below
         //extractor = cv::xfeatures2d::SiftDescriptorExtractor::create(); // <-- This one is correct
-        //        cv::Mat img8U,imgGray;
-        //        img.convertTo(img8U, CV_8U);
-        //        cv::cvtColor(img, imgGray, cv::COLOR_BGR2GRAY);
+        cv::Mat img8U,imgGray;
+        std::cout<<"Old Img type:" <<img.type()<<std::endl;
+        img.convertTo(img8U, CV_8U);
+        //cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
+        std::cout<<"New Img type:" <<img8U.type()<<std::endl;
+
     }
     else if (descriptorType.compare("SURF")==0)
     {
@@ -106,6 +113,8 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
     {
         std::cout<<"Wrong DescriptorType name :  "<<descriptorType<<std::endl;
     }
+
+
 
     // perform feature description
     double t = (double)cv::getTickCount();

@@ -186,22 +186,20 @@ void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint
 
 }
 
-/**/
 // Compute time-to-collision (TTC) based on keypoint correspondences in successive images
 void computeTTCCamera(const std::vector<cv::KeyPoint>& kptsPrev, const std::vector<cv::KeyPoint>& kptsCurr,
-                      const std::vector<cv::DMatch> kptMatches, double frameRate, double &TTC, cv::Mat *visImg)
-{
-    // Compute distance ration between all matched keypoints
-    std::vector<double> distRatios; // stores the distance rations for all kpts between curr, and prev. fram
-    for (auto it1 = kptMatches.begin(); it1 != kptMatches.end() - 1; ++it1)
-    { // outer kpt. loop
+                      const std::vector<cv::DMatch>& kptMatches, double frameRate, double& TTC) {
+// compute distance ratios between all matched keypoints
+    vector<double> distRatios; // stores the distance ratios for all keypoints between curr. and prev. frame
+    for (auto it1 = kptMatches.begin(); it1 != kptMatches.end() - 1; it1++) {
+
         // get current keypoint and its matched partner in the prev. frame
         cv::KeyPoint kpOuterCurr = kptsCurr.at(it1->trainIdx);
         cv::KeyPoint kpOuterPrev = kptsPrev.at(it1->queryIdx);
 
-        for (auto it2 = kptMatches.begin() + 1; it2 != kptMatches.end(); ++it2)
-        { // inner kpt.-loop
-            double minDist = 100.0;    // min. required distance
+        for (auto it2 = kptMatches.begin() + 1; it2 != kptMatches.end(); it2++) {
+
+            double minDist = 100.0; // min. required distance
 
             // get next keypoint and its matched partner in the prev. frame
             cv::KeyPoint kpInnerCurr = kptsCurr.at(it2->trainIdx);
@@ -211,35 +209,36 @@ void computeTTCCamera(const std::vector<cv::KeyPoint>& kptsPrev, const std::vect
             double distCurr = cv::norm(kpOuterCurr.pt - kpInnerCurr.pt);
             double distPrev = cv::norm(kpOuterPrev.pt - kpInnerPrev.pt);
 
-            if (distPrev > std::numeric_limits<double>::epsilon() && distCurr >= minDist)
-            { // avoid division by zero
+            if (distPrev > std::numeric_limits<double>::epsilon() && distCurr >= minDist) {
+                // avoid division by zero
                 double distRatio = distCurr / distPrev;
                 distRatios.push_back(distRatio);
             }
         } // eof inner loop over all matched kpts
     }     // eof outer loop over all matched kpts
 
-    // only continue if list of distance ratios is not empty
-    if (distRatios.empty())
-    {
+
+// only continue if list of distance ratios is not empty
+    if (distRatios.empty()) {
         TTC = NAN;
         return;
     }
 
-    /* Calculation Median of distance Ratio */
     std::sort(distRatios.begin(), distRatios.end());
+
     std::cout << "Distance Ratios:" << std::endl;
+    for (const auto& dist : distRatios) {
+        std::cout << dist << " ";
+    }
+    std::cout << std::endl;
+
 
     long medIndex = floor(distRatios.size() / 2.0);
-    double medDistRatio  = distRatios.size() % 2 == 0 ? (distRatios[medIndex - 1] + distRatios[medIndex]) / 2.0 : distRatios[medIndex]; // compute median dist. ratio to remove outlier influence
-
-    /* Calculation of Mean distance Ratio */
-    // int size = distRatios.size();
-    // double meanDistRatio = size % 2 == 0 ? meanDistRatio =  (distRatios[size/ 2] + distRatios[size / 2 -1])  : distRatios[size/2]; // will lead a faulty calculation of the TTC
+// compute median dist. ratio to remove outlier influence
+    double medDistRatio = distRatios.size() % 2 == 0 ? (distRatios[medIndex - 1] + distRatios[medIndex]) / 2.0 : distRatios[medIndex];
 
     std::cout << "medDistRatio = " << medDistRatio << std::endl;
 
-    /*TTC*/
     double dT = 1 / frameRate;
     TTC = -dT / (1 - medDistRatio);
 
@@ -247,18 +246,18 @@ void computeTTCCamera(const std::vector<cv::KeyPoint>& kptsPrev, const std::vect
 
 
 void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
-                     std::vector<LidarPoint> &lidarPointsCurr, double frameRate, double &TTC)
-{
-
-    // auxiliary variables
-    double dT = 1.0/frameRate;        // time between two measurements in seconds
-    constexpr double  laneWidth = 4.0; // assumed width of the ego lane
+                     std::vector<LidarPoint> &lidarPointsCurr, double frameRate, double &TTC) {
+// auxiliary variables
+    double dT = 1 / frameRate; // time between two measurements in seconds
+    constexpr double laneWidth = 4.0; // assumed width of the ego lane
     constexpr float clusterTolerance = 0.1;
 
-    // According to Udacity Suggestion
+// find closest distance to LiDAR points within ego lane
+    double minXPrev = 1e9, minXCurr = 1e9;
+
+    /*** Udacity Suggestion ***/
     std::cout << "Process previous frame..." << std::endl;
     std::vector<LidarPoint> lidarPointsPrevClustered = removeLidarOutlier(lidarPointsPrev, clusterTolerance);
-
     std::cout << "Process current frame..." << std::endl;
     std::vector<LidarPoint> lidarPointsCurrClustered = removeLidarOutlier(lidarPointsCurr, clusterTolerance);
 
@@ -269,35 +268,26 @@ void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
     std::cout<<"lidarPointsCurr"<<std::endl;
     preProcessing(lidarPointsCurr,clusterTolerance);
 
-    // find closest distance to Lidar points within ego lane
-    double minXPrev = 1e9, minXCurr = 1e9;
-    for (const auto & it : lidarPointsPrevClustered)
-    {
-        if(abs(it.y)<=laneWidth/2)
-        {   // 3D point within ego lane?
-            // this is a conditional operation (condition) ? expression1 : expression2
-            // if condition ( in our case minXPrev> it-x) true than expression1 (in our case it->x),
-            // if false then expression2 ( in our case minXPrev)
+
+
+    for (const auto & it : lidarPointsPrev) {
+        if (abs(it.y) <= laneWidth / 2.0) { // 3D point within ego lane?
             minXPrev = it.x < minXPrev ? it.x : minXPrev;
         }
     }
 
-    //for (auto it = lidarPointsCurrClustered.begin(); it != lidarPointsCurrClustered.end(); ++it)
-    for (const auto & it : lidarPointsCurrClustered)
-    {
-        if(abs(it.y)<=laneWidth/2)
-        {   // 3D point within ego lane?
-            // this is a conditional operation (condition) ? expression1 : expression2
-            // if condition ( in our case minXCurr> it-x) true than expression1 (in our case it->x),
-            // if false then expression2 ( in our case minXCurr)
-            minXCurr = minXCurr > it.x ? it.x : minXCurr;
+    for (const auto & it : lidarPointsCurr) {
+        if (abs(it.y) <= laneWidth / 2.0) { // 3D point within ego lane?
+            minXCurr = it.x < minXCurr ? it.x : minXCurr;
         }
     }
+
     std::cout << "Prev min X = " << minXPrev << std::endl;
     std::cout << "Curr min X = " << minXCurr << std::endl;
 
-    // compute TTC from both measurements
-    TTC = minXCurr * dT / (minXPrev - minXCurr);  // TTC = (d1/v0) = (d1*frameRate) / (d0-d1)
+// compute TTC from both measurements
+    TTC = minXCurr * dT / (minXPrev - minXCurr);
+
 }
 
 
@@ -377,48 +367,45 @@ void matchBoundingBoxes(std::vector<cv::DMatch> &matches, std::map<int, int> &bb
 
 
 //void clusterHelper(int index, const std::vector<std::vector<float>>& points, std::vector<int>& cluster, std::vector<bool>& processed, KdTree* tree, float distanceTol )
-void clusterHelper(int index,   const std::vector<std::vector<float>>& points, std::vector<int>& cluster, std::vector<bool>& processed, const std::shared_ptr<KdTree>& tree, float distanceTol)
-
-{
-    processed[index] =true;
+void clusterHelper(int index, const std::vector<std::vector<float>>& points, std::vector<int>& cluster, std::vector<bool>& processed,
+                   const std::shared_ptr<KdTree>& tree, float distanceTol) {
+    processed[index] = true;
     cluster.push_back(index);
 
-    std::vector<int> nearest = tree->search(points[index],distanceTol);
+    std::vector<int> nearest = tree->search(points[index], distanceTol);
 
-    for (int id :nearest)
-    {
-        if (!processed[id])
-            clusterHelper(id,points,cluster,processed,tree,distanceTol);
-
+    for (int id : nearest) {
+        if (!processed[id]) {
+            clusterHelper(id, points, cluster, processed, tree, distanceTol);
+        }
     }
+
 }
 
 std::vector<std::vector<int>> euclideanCluster(const std::vector<std::vector<float>>& points,
-                                               const std::shared_ptr<KdTree>& tree, float distanceTol)
-{
-    // TODO: Fill out this function to return list of indices for each cluster
+                                               const std::shared_ptr<KdTree>& tree, float distanceTol) {
 
     std::vector<std::vector<int>> clusters;
-    std::vector<bool> processed(points.size(),false);
+    std::vector<bool> processed(points.size(), false);
 
     int i = 0;
-    while (i<points.size())
-    {
-        if (processed[i])
-        {
+    while (i < points.size()) {
+        if (processed[i]) {
             i++;
             continue;
         }
-        std::vector<int>cluster;
-        clusterHelper(i,points,cluster,processed,tree,distanceTol);
+
+        std::vector<int> cluster;
+        clusterHelper(i, points, cluster, processed, tree, distanceTol);
         clusters.push_back(cluster);
         i++;
     }
 
+
 // Return list of indices for each cluster
     return clusters;
-}
 
+}
 std::vector<LidarPoint> removeLidarOutlier(const std::vector<LidarPoint> &lidarPoints, float clusterTolerance) {
     auto treePrev = std::make_shared<KdTree>();
     std::vector<std::vector<float>> points;

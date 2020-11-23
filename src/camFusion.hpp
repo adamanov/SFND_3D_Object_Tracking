@@ -15,8 +15,10 @@ void matchBoundingBoxes(std::vector<cv::DMatch> &matches, std::map<int, int> &bb
 
 void show3DObjects(std::vector<BoundingBox> &boundingBoxes, cv::Size worldSize, cv::Size imageSize, bool bWait=true);
 
-void computeTTCCamera(const std::vector<cv::KeyPoint> &kptsPrev,const std::vector<cv::KeyPoint> &kptsCurr,
-                      const std::vector<cv::DMatch> kptMatches, double frameRate, double &TTC, cv::Mat *visImg=nullptr);
+void computeTTCCamera(const std::vector<cv::KeyPoint>& kptsPrev, const std::vector<cv::KeyPoint>& kptsCurr,
+                      const std::vector<cv::DMatch>& kptMatches, double frameRate, double& TTC);
+
+
 
 void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
                      std::vector<LidarPoint> &lidarPointsCurr, double frameRate, double &TTC);
@@ -32,6 +34,7 @@ std::vector<std::vector<int>> euclideanCluster(const std::vector<std::vector<flo
 void preProcessing (std::vector<LidarPoint> &lidarPoints,float distanceTol,int minSize = 20);
 
 // Suggestion from Udacity
+
 std::vector<LidarPoint> removeLidarOutlier(const std::vector<LidarPoint> &lidarPoints, float clusterTolerance);
 
 template<typename KeyType, typename ValueType>
