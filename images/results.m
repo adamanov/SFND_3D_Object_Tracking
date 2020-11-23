@@ -42,7 +42,7 @@ Standard Deviation = -nan
 ********************************** 
 **************SUMMARY************* 
 FAST + FREAK 
-- Not completed  
+-  could not perform FREAK descriptor.
 **************SUMMARY************* 
 FAST + AKAZE 
 - Error 
@@ -80,7 +80,7 @@ Standard Deviation = -nan
 ********************************** 
 **************SUMMARY************* 
 BRISK + FREAK 
-- Not terminated 
+-  could not perform FREAK descriptor.
 **************SUMMARY************* 
 BRISK + AKAZE 
 - Error 
@@ -117,7 +117,7 @@ Standard Deviation = -nan
 **********************************\ 
 **************SUMMARY************* 
 ORB + FREAK 
-- Not terminated 
+-  could not perform FREAK descriptor.
 **********************************\ 
 **************SUMMARY************* 
 ORB + AKAZE 
@@ -159,7 +159,7 @@ Standard Deviation = -nan
 ********************************** 
 **************SUMMARY************* 
 AKAZE + FREAK 
-- Not terminated 
+-  could not perform FREAK descriptor.
 **************SUMMARY************* 
 AKAZE + AKAZE 
 - Error 
@@ -197,7 +197,7 @@ Standard Deviation = -nan
 ********************************** 
 **************SUMMARY************* 
 SIFT + FREAK 
-- Not terminated  
+- could not perform FREAK descriptor.
 ********************************** 
 **************SUMMARY************* 
 SIFT + AKAZE 
