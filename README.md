@@ -121,7 +121,7 @@ There are several ways of showing which methods perform best, following metrics 
 - Standard Deviation in seconds
 - Mean in second
 
-[check out results](images/results.txt)
+The table shows the evaluation based on **Maximum TTC in second**
 
   | _Detector_/Descriptor |BRISK	    | BRIEF	  |ORB	    |FREAK	            |AKAZE	|SIFT    |  
   | --------------------|-----------|---------|---------|-------------------|-------|--------|  
@@ -131,6 +131,8 @@ There are several ways of showing which methods perform best, following metrics 
   | **_ORB_**             | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
   | **_AKAZE_**           | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
   | **_SIFT_**            | 44,9166	  |44,9166	|63,8475	|Descriptor failed	|Error	|34,3656 |  
+  
+  [check out results](images/results.txt)
   
 
 The combination of different detector / descriptor were also done in [Mid-Term](https://github.com/adamanov/SFND_2D_Feature_Tracking) project where It worked well and could be calculated top3.
