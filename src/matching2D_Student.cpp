@@ -60,6 +60,10 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
 {
     // TODO BRIEF, ORB, FREAK, AKAZE, SIFT Types
     // select appropriate descriptor
+
+    // perform feature description
+    double t = (double)cv::getTickCount();
+
     cv::Ptr<cv::DescriptorExtractor> extractor;
     if (descriptorType.compare("BRISK") == 0)
     {
@@ -69,25 +73,43 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
         float patternScale = 1.0f; // apply this scale to the pattern used for sampling the neighbourhood of a keypoint.
 
         extractor = cv::BRISK::create(threshold, octaves, patternScale);
+        extractor->compute(img, keypoints, descriptors);
     }
     else if (descriptorType.compare("BRIEF")==0)
     {
         extractor = cv::BRISK::create();
+        extractor->compute(img, keypoints, descriptors);
+
 
     }
     else if (descriptorType.compare("ORB")==0)
     {
         extractor = cv::ORB::create();
+        extractor->compute(img, keypoints, descriptors);
     }
     else if (descriptorType.compare("FREAK")==0)
     {
         cv::xfeatures2d::FREAK extractor;
         // extractor = cv::xfeatures2d::FREAK::create(); // <-- Alternative version for Udacity VM
+        extractor.compute(img, keypoints, descriptors);
+
 
     }
     else if (descriptorType.compare("AKAZE") == 0)
     {
-        extractor = cv::AKAZE::create();
+        const double akaze_thresh = 3e-4; // AKAZE detection threshold set to locate about 1000 keypoints
+        cv::Ptr<cv::AKAZE> akaze = cv::AKAZE::create();
+        akaze->setThreshold(akaze_thresh);
+        akaze->setNOctaves(4);
+        akaze = cv::AKAZE::create();
+
+        vector<cv::KeyPoint> kpts_AKAZE;
+        for(auto kpts: keypoints){
+            kpts.class_id = 0;
+            kpts_AKAZE.push_back(kpts);
+        }
+
+        akaze->compute(img, kpts_AKAZE, descriptors);
 
 
     }
@@ -101,6 +123,7 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
         img.convertTo(img8U, CV_8U);
         //cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
         std::cout<<"New Img type:" <<img8U.type()<<std::endl;
+        extractor->compute(img, keypoints, descriptors);
 
     }
     else if (descriptorType.compare("SURF")==0)
@@ -108,17 +131,14 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
         //extractor = cv::xfeatures2d::SURF::create();
         int minHessian = 400;
         //extractor = cv::xfeatures2d::SurfDescriptorExtractor::create(minHessian); // <-- This one is correct
+        extractor->compute(img, keypoints, descriptors);
+
     }
     else
     {
         std::cout<<"Wrong DescriptorType name :  "<<descriptorType<<std::endl;
     }
 
-
-
-    // perform feature description
-    double t = (double)cv::getTickCount();
-    extractor->compute(img, keypoints, descriptors);
     t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
     cout << descriptorType << " descriptor extraction in " << 1000 * t / 1.0 << " ms" << endl;
 }
@@ -254,7 +274,8 @@ void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std:
     if(detectorType.compare("FAST") == 0)
     {
         double t = (double)cv::getTickCount();
-        cv::FAST(img,keypoints,true);
+        int threshold = 30;
+        cv::FAST(img,keypoints,threshold,true);
         t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
         cout << "Fast with n= " << keypoints.size() << " keypoints in " << 1000 * t / 1.0 << " ms" << endl;
     }

@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <algorithm>
 #include <numeric>
@@ -190,6 +189,7 @@ void clusterKptMatchesWithROI(BoundingBox &boundingBox, std::vector<cv::KeyPoint
 void computeTTCCamera(const std::vector<cv::KeyPoint>& kptsPrev, const std::vector<cv::KeyPoint>& kptsCurr,
                       const std::vector<cv::DMatch>& kptMatches, double frameRate, double& TTC) {
 // compute distance ratios between all matched keypoints
+    std::cout<<" I am in computeTTCCamera"<<std::endl;
     vector<double> distRatios; // stores the distance ratios for all keypoints between curr. and prev. frame
     for (auto it1 = kptMatches.begin(); it1 != kptMatches.end() - 1; it1++) {
 
@@ -234,16 +234,23 @@ void computeTTCCamera(const std::vector<cv::KeyPoint>& kptsPrev, const std::vect
 
 
     long medIndex = floor(distRatios.size() / 2.0);
-// compute median dist. ratio to remove outlier influence
+    // compute median dist. ratio to remove outlier influence
     double medDistRatio = distRatios.size() % 2 == 0 ? (distRatios[medIndex - 1] + distRatios[medIndex]) / 2.0 : distRatios[medIndex];
 
     std::cout << "medDistRatio = " << medDistRatio << std::endl;
 
+    /// To avoid division on zero (if medDistRation ==1 )
+    if (medDistRatio==1.000){
+        std::cout<< " medDisRatio =1, so we add a small treshold"<<std::endl;
+        medDistRatio *= std::numeric_limits<double>::epsilon();
+    }
+
     double dT = 1 / frameRate;
     TTC = -dT / (1 - medDistRatio);
+    std::cout<<"TTC: " <<TTC<<std::endl;
+
 
 }
-
 
 void computeTTCLidar(std::vector<LidarPoint> &lidarPointsPrev,
                      std::vector<LidarPoint> &lidarPointsCurr, double frameRate, double &TTC) {

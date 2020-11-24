@@ -81,10 +81,10 @@ int main(int argc, const char *argv[])
 
 
     // SHITOMASI, HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
-    string detectorType = "BRIEF";      //FAST, BRISK, ORB, AKAZE, SIFT
+    string detectorType = "BRISK";      //FAST, BRISK, ORB, AKAZE, SIFT
 
     // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
-    string descriptorType = "BRIEF"; // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
+    string descriptorType = "BRISK"; // BRISK, BRIEF, ORB, FREAK, AKAZE, SIFT
     std::vector<double> ttcCameraVec;
 
     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex+=imgStepWidth)
@@ -214,9 +214,9 @@ int main(int argc, const char *argv[])
             /* MATCH KEYPOINT DESCRIPTORS */
 
             vector<cv::DMatch> matches;
-            string matcherType = "MAT_BF";        // MAT_BF, MAT_FLANN
-            string descriptorType = "DES_BINARY"; // DES_BINARY, DES_HOG
-            string selectorType = "SEL_KNN";       // SEL_NN, SEL_KNN
+            string matcherType = "MAT_FLANN";        // MAT_BF, MAT_FLANN
+            string descriptorType = "DES_BINARY";    // DES_BINARY, DES_HOG
+            string selectorType = "SEL_KNN";         // SEL_NN, SEL_KNN
 
             matchDescriptors((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints,
                              (dataBuffer.end() - 2)->descriptors, (dataBuffer.end() - 1)->descriptors,
@@ -285,6 +285,7 @@ int main(int argc, const char *argv[])
                     double ttcCamera;
                     clusterKptMatchesWithROI(*currBB, (dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->kptMatches);
                     computeTTCCamera((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints, currBB->kptMatches, sensorFrameRate, ttcCamera);
+                    std::cout<<"ttcCamera: " <<ttcCamera<<std::endl;
                     ttcCameraVec.push_back(ttcCamera);
                     //// EOF STUDENT ASSIGNMENT
 
