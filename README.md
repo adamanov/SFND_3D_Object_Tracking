@@ -132,8 +132,8 @@ The table shows the evaluation based on **Maximum TTC in second**
   
   
   The **BRIEF and BRISK Descriptor** shows the closest perfomance to Lidar TTC, although it is still not close enough.   
-  The **ORB and SIFT Descriptor** shows the worsest perfomance amoung of all other descriptors. 
-  THe **FREAK Descriptor** failed to compute due to OpenCV libary error. 
+  The **ORB and SIFT Descriptor** shows the worsest perfomance amoung of all other descriptors.   
+  The **FREAK Descriptor** failed to compute due to OpenCV libary error.
   
   [check out results](images/results.txt)
   
